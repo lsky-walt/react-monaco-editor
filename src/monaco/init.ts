@@ -1,8 +1,5 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-underscore-dangle */
 import merge from 'lodash.merge'
 import { monacoLoader, monaco } from '../config'
-// import makeCancelable from './makeCancelable'
 
 declare global {
   interface Window {
@@ -10,7 +7,7 @@ declare global {
   }
 }
 
-const noop = () => {}
+const noop = () => { }
 
 interface Config {
   monaco: string,
@@ -19,12 +16,12 @@ interface Config {
 
 class Monaco {
   private __config: Config
-  public wrapperPromise: object
+  public wrapperPromise: Promise<any>
   public resolve: Function
   public reject: Function
   private isInitialized: boolean
 
-  constructor(config:Config) {
+  constructor(config: Config) {
     this.__config = config
     // this.injectScripts = this.injectScripts.bind(this)
     this.handleMainScriptLoad = this.handleMainScriptLoad.bind(this)
@@ -89,7 +86,7 @@ class Monaco {
     return mainScript
   }
 
-  init() {
+  init(): Promise<any> {
     if (!this.isInitialized) {
       if (window.monaco && window.monaco.editor) {
         return new Promise((res) => res(window.monaco))

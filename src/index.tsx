@@ -1,15 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import MonacoEditor, { EditorProps } from './monaco/editor'
 
 
-interface IndexProps {
-  value: string,
-  language: string,
+interface IndexProps extends EditorProps {
   style?: object,
-  options: object,
-  width: string | number,
-  height: string | number,
-  editorDidMount?: Function,
   onChange?: Function
 }
 
