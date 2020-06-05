@@ -1,14 +1,36 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import merge from 'lodash.merge'
-import co from '../config'
+import { monacoLoader, monaco } from '../config'
 // import makeCancelable from './makeCancelable'
 
+declare global {
+  interface Window {
+    monaco?: any
+  }
+}
+
+const noop = () => {}
+
+interface Config {
+  monaco: string,
+  monacoLoader: string
+}
+
 class Monaco {
-  constructor(config = {}) {
+  private __config: Config
+  public wrapperPromise: object
+  public resolve: Function
+  public reject: Function
+  private isInitialized: boolean
+
+  constructor(config:Config) {
     this.__config = config
     // this.injectScripts = this.injectScripts.bind(this)
     this.handleMainScriptLoad = this.handleMainScriptLoad.bind(this)
+
+    this.reject = noop
+    this.resolve = noop
 
     this.wrapperPromise = new Promise((res, rej) => {
       this.resolve = res
@@ -18,7 +40,7 @@ class Monaco {
     this.isInitialized = false
   }
 
-  config(config) {
+  config(config: Config) {
     if (config) {
       this.__config = merge(this.__config, config)
     }
@@ -26,7 +48,7 @@ class Monaco {
     return this
   }
 
-  injectScripts(script) {
+  injectScripts(script: HTMLScriptElement) {
     document.body.appendChild(script)
   }
 
@@ -35,16 +57,16 @@ class Monaco {
     this.resolve(window.monaco)
   }
 
-  createScript(src) {
-    const script = document.createElement('script')
+  createScript(src?: string): any {
+    const script: any = document.createElement('script')
     if (src) {
       script.src = src
     }
     return script
   }
 
-  createMonacoLoaderScript(mainScript) {
-    const loaderScript = this.createScript(this.__config.urls.monacoLoader)
+  createMonacoLoaderScript(mainScript: HTMLScriptElement) {
+    const loaderScript = this.createScript(this.__config.monacoLoader)
     loaderScript.onload = () => this.injectScripts(mainScript)
 
     loaderScript.onerror = this.reject
@@ -52,11 +74,11 @@ class Monaco {
     return loaderScript
   }
 
-  createMainScript() {
-    const mainScript = this.createScript()
+  createMainScript(): HTMLScriptElement {
+    const mainScript: any = this.createScript()
 
     mainScript.innerHTML = `
-      require.config({ paths: { 'vs': '${this.__config.urls.monacoBase}' } });
+      require.config({ paths: { 'vs': '${this.__config.monaco}' } });
       require(['vs/editor/editor.main'], function() {
         document.dispatchEvent(new Event('monaco_init'));
       });
@@ -88,4 +110,4 @@ class Monaco {
   }
 }
 
-export default new Monaco(co)
+export default new Monaco({ monaco, monacoLoader })
