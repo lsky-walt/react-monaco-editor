@@ -5,6 +5,9 @@
   "repository": "https://github.com/Lsky1026/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.merge": "^4.6.6",
