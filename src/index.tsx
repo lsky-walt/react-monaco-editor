@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import MonacoEditor, { EditorProps } from './monaco/editor'
 
 
-interface IndexProps extends EditorProps {
+export interface MonacoEditorProps extends EditorProps {
   style?: object,
   onChange?: Function
 }
 
-class Index extends React.Component<IndexProps, {}> {
-  constructor(props: IndexProps) {
+class Index extends React.Component<MonacoEditorProps, {}> {
+  constructor(props: MonacoEditorProps) {
     super(props)
   }
 
