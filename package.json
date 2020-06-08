@@ -6,7 +6,7 @@
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "webpack --mode production --config ./webpack/webpack.pro.config.js",
     "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js"
   },
   "devDependencies": {
