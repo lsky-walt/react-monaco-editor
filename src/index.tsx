@@ -1,6 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Button } from 'shineout'
 import MonacoEditor, { EditorProps } from './monaco/editor'
+
+import styles from './style/index.less'
 
 
 export interface MonacoEditorProps extends EditorProps {
@@ -15,7 +17,9 @@ class Index extends React.Component<MonacoEditorProps, {}> {
 
   render() {
     return (
-      <div />
+      <div className={styles['container']}>
+        <Button type="primary">test</Button>
+      </div>
     )
   }
 }

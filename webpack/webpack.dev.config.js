@@ -9,11 +9,31 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      use: ['babel-loader', 'ts-loader'],
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]'
+              },
+              importLoaders: 2
+            }
+          },
+          'postcss-loader',
+          'less-loader'
+        ],
+        exclude: /node_modules/
+      }
+    ]
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

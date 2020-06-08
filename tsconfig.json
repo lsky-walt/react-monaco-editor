@@ -24,7 +24,8 @@
   },
   "include": [
     "./src",
-    "./site"
+    "./site",
+    "index.d.ts"
   ],
   "exclude": [
     "./lib",
