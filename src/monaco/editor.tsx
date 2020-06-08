@@ -12,8 +12,8 @@ export interface EditorOptions {
 }
 
 export interface EditorProps {
-  width: string | number,
-  height: string | number,
+  width: number,
+  height: number,
   value: string,
   language: string,
   theme?: string,
@@ -114,6 +114,7 @@ class Index extends React.Component<EditorProps, EditorState> {
         language,
       ),
       automaticLayout: true,
+      minimap: { enabled: false },
       ...options,
     })
 

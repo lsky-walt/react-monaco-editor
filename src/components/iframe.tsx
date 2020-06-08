@@ -1,7 +1,9 @@
 import React from 'react';
 import { addEvent, removeEvent } from '../utils'
 
-interface StyleParams {
+import styles from '../style/iframe.less'
+
+export interface StyleParams {
   width: number,
   height: number
 }
@@ -43,7 +45,7 @@ class Index extends React.Component<IframeProps> {
 
   render() {
     return (
-      <iframe ref={this.bindRef}></iframe>
+      <iframe className={styles['iframe']} ref={this.bindRef}></iframe>
     )
   }
 }
