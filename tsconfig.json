@@ -20,10 +20,11 @@
     // "noEmit": true,
     "jsx": "react",
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./"
   },
   "include": [
-    "./src"
+    "./src",
+    "./site"
   ],
   "exclude": [
     "./lib",

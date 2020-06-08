@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './src/site/index.tsx'
+    index: './site/index.tsx'
   },
   devtool: 'inline-source-map',
   module: {
@@ -36,7 +36,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      template: './src/site/index.html'
+      template: './site/index.html'
     })
   ],
   output: {

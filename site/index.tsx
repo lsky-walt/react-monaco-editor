@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom'
-import MonacoEditor, { MonacoEditorProps } from '../index'
+import MonacoEditor, { MonacoEditorProps } from '../src/index'
 
 
 class Index extends React.Component {
