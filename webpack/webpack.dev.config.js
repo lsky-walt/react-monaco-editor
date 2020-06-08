@@ -8,14 +8,14 @@ module.exports = {
     index: './src/site/index.tsx'
   },
   devtool: 'inline-source-map',
-  module: {   // new add +
+  module: {
     rules: [{
       test: /\.tsx?$/,
       use: ['babel-loader', 'ts-loader'],
       exclude: /node_modules/
     }]
   },
-  resolve: { // new add +
+  resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   externals: {

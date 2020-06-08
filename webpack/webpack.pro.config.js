@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     filename: 'index.monaco.editor.js',
-    path: path.resolve(__dirname, '../dist/')
+    path: path.resolve(__dirname, '../lib/')
   },
   module: {
     rules: [{
