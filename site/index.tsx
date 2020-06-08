@@ -1,19 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom'
-import MonacoEditor from '../src/index'
-
+import Base from './components/base'
+import Resizer from './components/for-resize'
 
 class Index extends React.Component {
   render() {
     return (
-      <div style={{ padding: '20px 20px' }}>
-        <MonacoEditor
-          width={400}
-          height={500}
-          language="javascript"
-          value="abc"
-        ></MonacoEditor>
-      </div>
+      <React.Fragment>
+        <Base></Base>
+        {/* <Resizer></Resizer> */}
+      </React.Fragment>
     )
   }
 }

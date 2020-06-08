@@ -6,8 +6,7 @@ import styles from './style/index.less'
 
 
 export interface MonacoEditorProps extends EditorProps {
-  style?: object,
-  onChange?: Function
+  style?: object
 }
 
 interface MonacoEditorState extends StyleParams {
@@ -52,7 +51,6 @@ class Index extends React.Component<MonacoEditorProps, MonacoEditorState> {
       init: true
     })
   }
-
   render() {
     const { width, height, init } = this.state
     const { width: w, height: h, ...ret } = this.props

@@ -1,8 +1,8 @@
 {
-  "name": "react-monaco-editor",
+  "name": "@react/monaco-editor",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Lsky1026/react-monaco-editor.git",
+  "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
   "scripts": {
@@ -45,6 +45,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.7.2",
+    "re-resizable": "^6.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "shineout": "^1.5.2"

@@ -5,6 +5,10 @@ import MonacoContainer from './monaco-container'
 
 import monacoEditor from './init'
 import { isFunc } from '../utils'
+import debounce from 'lodash.debounce'
+
+// themes
+import { themes } from '../config/themes'
 
 export interface EditorOptions {
   readonly?: boolean | undefined,
@@ -18,7 +22,8 @@ export interface EditorProps {
   language: string,
   theme?: string,
   options?: EditorOptions,
-  editorDidMount?: (editor: any, monaco: any) => void
+  editorDidMount?: (editor: any, monaco: any) => void,
+  onChange?: (value: string | null) => void,
 }
 
 interface EditorState {
@@ -106,7 +111,9 @@ class Index extends React.Component<EditorProps, EditorState> {
   createEditor() {
     if (!this.monaco || !this.container) return
 
-    const { value, language, options, theme, editorDidMount = () => { } } = this.props
+    const { value, language, options, theme = 'vs', editorDidMount = () => { }, onChange = () => { } } = this.props
+
+    const that = this
 
     this.editor = this.monaco.editor.create(this.container, {
       model: this.monaco.editor.createModel(
@@ -114,13 +121,21 @@ class Index extends React.Component<EditorProps, EditorState> {
         language,
       ),
       automaticLayout: true,
-      minimap: { enabled: false },
       ...options,
     })
 
     if (isFunc(editorDidMount)) editorDidMount(this.editor, this.monaco)
 
+    if (isFunc(onChange)) {
+      that.editor.onDidChangeModelContent(debounce(() => {
+        onChange(that.editor.getValue())
+      }, 32))
+    }
+
     // theme
+    Object.keys(themes).forEach(t => {
+      that.monaco.editor.defineTheme(t, themes[t])
+    })
     this.monaco.editor.setTheme(theme)
 
     // ready
