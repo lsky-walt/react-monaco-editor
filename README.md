@@ -14,7 +14,7 @@
 
 ```javascript
 
-git clone git@github.com:Lsky1026/react-monaco-editor.git
+git clone https://github.com/lsky-walt/react-monaco-editor.git
 
 cd react-monaco-editor
 
