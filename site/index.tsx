@@ -8,7 +8,7 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <Base></Base>
-        {/* <Resizer></Resizer> */}
+        <Resizer></Resizer>
       </React.Fragment>
     )
   }

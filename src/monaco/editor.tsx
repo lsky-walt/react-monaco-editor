@@ -16,8 +16,8 @@ export interface EditorOptions {
 }
 
 export interface EditorProps {
-  width: number,
-  height: number,
+  width?: number | string,
+  height?: number | string,
   value: string,
   language: string,
   theme?: string,
@@ -66,7 +66,7 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     if (!ready) this.createEditor()
 
-    const { value, language, theme, options = {} } = this.props
+    const { width = '100%', height = '100%', value, language, theme, options = {} } = this.props
 
     if (value !== prevProps.value) {
       if (options.readOnly) {
@@ -85,6 +85,10 @@ class Index extends React.Component<EditorProps, EditorState> {
     if (language !== prevProps.language) {
       this.editor.setValue(value)
       this.monaco.editor.setModelLanguage(this.editor.getModel(), language)
+    }
+
+    if (prevProps.width !== width || prevProps.height !== height) {
+      this.editor.layout({ width: this.calc(width), height: this.calc(height) })
     }
 
 
@@ -106,6 +110,12 @@ class Index extends React.Component<EditorProps, EditorState> {
 
   bindRef(node: HTMLDivElement | null) {
     this.container = node
+  }
+
+  calc = (n: number | string) => {
+    if (!n) return 0
+    if (typeof n === 'string') return n
+    return n - 2
   }
 
   createEditor() {
@@ -143,7 +153,7 @@ class Index extends React.Component<EditorProps, EditorState> {
   }
 
   render() {
-    const { width, height } = this.props
+    const { width = '100%', height = '100%' } = this.props
     const { ready } = this.state
     return (
       <MonacoContainer

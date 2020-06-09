@@ -14,7 +14,7 @@ class Index extends React.PureComponent<MonacoContainerProps> {
   render() {
     const { ready, height, width, bindRef } = this.props
     return (
-      <div style={{ width, height }} className={styles['monaco-editor-container']}>
+      <div style={{ width, height, border: '1px solid #bdbdbd' }} className={styles['monaco-editor-container']}>
         {!ready && <Spin size={16}></Spin>}
         <div ref={bindRef} style={{ width, flex: 1, display: ready ? 'block' : 'none' }} />
       </div>
