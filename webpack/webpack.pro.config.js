@@ -6,7 +6,7 @@ module.exports = {
     index: './src/index.tsx'
   },
   output: {
-    filename: 'index.monaco.editor.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, '../lib/')
   },
   module: {

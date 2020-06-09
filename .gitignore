@@ -12,3 +12,7 @@ package-lock.json
 # build
 dist
 lib
+
+# npmrc & yarnrc
+.npmrc
+.yarnrc
