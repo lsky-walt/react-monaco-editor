@@ -8,7 +8,8 @@
   "scripts": {
     "build": "webpack --mode production --config ./webpack/webpack.pro.config.js",
     "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
-    "build-dist": "webpack --config ./webpack/webpack.dist.config.js"
+    "build-dist": "webpack --config ./webpack/webpack.dist.config.js",
+    "pub": "npm run build && npm publish --access public"
   },
   "keywords": [
     "monaco-editor",
