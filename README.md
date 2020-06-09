@@ -9,7 +9,7 @@
 
 ```javascript
 
-$ yarn add @react/monaco-editor
+$ yarn add @lsky/react-monaco-editor
 
 ```
 
