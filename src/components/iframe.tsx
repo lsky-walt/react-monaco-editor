@@ -4,8 +4,8 @@ import { addEvent, removeEvent } from '../utils'
 import styles from '../style/iframe.less'
 
 export interface StyleParams {
-  width: number,
-  height: number
+  width: number | string,
+  height: number | string
 }
 
 interface IframeProps {
