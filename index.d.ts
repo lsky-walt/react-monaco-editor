@@ -1,10 +1,21 @@
-declare module '*.less' {
-  const content: any;
-  export default content;
+import * as React from 'react'
+
+export interface EditorOptions {
+  readonly?: boolean | undefined,
+  [propName: string]: any
+}
+export interface MonacoEditorProps {
+  width?: number | string,
+  height?: number | string,
+  value: string,
+  language: string,
+  theme?: string,
+  options?: EditorOptions,
+  style?: object,
+  editorDidMount?: (editor: any, monaco: any) => void,
+  onChange?: (value: string | null) => void,
 }
 
-
-declare module '*.json' {
-  const content: any;
-  export default content;
+declare class MonacoEditor extends React.Component<MonacoEditorProps> {
+  render(): JSX.Element
 }

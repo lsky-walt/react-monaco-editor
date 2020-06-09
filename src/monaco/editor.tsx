@@ -4,7 +4,7 @@ import React from 'react'
 import MonacoContainer from './monaco-container'
 
 import monacoEditor from './init'
-import { isFunc } from '../utils'
+import { isFunc, isNumber } from '../utils'
 import debounce from 'lodash.debounce'
 
 // themes
@@ -87,7 +87,7 @@ class Index extends React.Component<EditorProps, EditorState> {
       this.monaco.editor.setModelLanguage(this.editor.getModel(), language)
     }
 
-    if (prevProps.width !== width || prevProps.height !== height) {
+    if ((prevProps.width !== width || prevProps.height !== height) && isNumber(width) && isNumber(height)) {
       this.editor.layout({ width: this.calc(width), height: this.calc(height) })
     }
 

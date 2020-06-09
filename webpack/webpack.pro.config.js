@@ -7,6 +7,7 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
+    libraryTarget: 'umd',
     path: path.resolve(__dirname, '../lib/')
   },
   module: {
@@ -37,9 +38,18 @@ module.exports = {
     ]
   },
   externals: {
-    shineout: 'window.Shineout',
-    react: 'window.React',
-    'react-dom': 'window.ReactDOM',
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

@@ -1,13 +1,17 @@
 const path = require('path')
-const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './site/index.tsx'
+    index: './src/index.tsx'
   },
-  devtool: 'inline-source-map',
+  devtool: 'inline-cheap-source-map',
+  mode: 'development',
+  output: {
+    filename: 'index.js',
+    libraryTarget: 'umd',
+    path: path.resolve(__dirname, '../dist/')
+  },
   module: {
     rules: [
       {
@@ -35,9 +39,6 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
   externals: {
     react: {
       root: 'React',
@@ -52,24 +53,10 @@ module.exports = {
       amd: 'react-dom',
     },
   },
-  devServer: {
-    //这个本地开发环境运行时是基于哪个文件夹作为根目录
-    contentBase: './dist',
-    //当你有错误的时候在控制台打出
-    stats: 'errors-only',
-    //不启动压缩
-    compress: false,
-    host: 'localhost',
-    port: 8080
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HTMLWebpackPlugin({
-      template: './site/index.html'
-    })
-  ],
-  output: {
-    filename: '[name].bundle.[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
-  }
+    new CleanWebpackPlugin()
+  ]
 }
