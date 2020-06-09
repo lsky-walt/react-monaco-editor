@@ -1,14 +1,25 @@
 {
-  "name": "@react/monaco-editor",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@lsky/react-monaco-editor",
+  "version": "0.0.4",
+  "main": "./lib/index.js",
   "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production --config ./webpack/webpack.pro.config.js",
-    "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js"
+    "start": "webpack-dev-server --config ./webpack/webpack.dev.config.js",
+    "build-dist": "webpack --config ./webpack/webpack.dist.config.js",
+    "pub": "npm run build && npm publish --access public"
   },
+  "keywords": [
+    "monaco-editor",
+    "react",
+    "react-monaco-editor"
+  ],
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-typescript": "^7.10.1",
@@ -34,6 +45,7 @@
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
     "postcss-loader": "^3.0.0",
+    "shineout": "1.6.0-rc.13",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
@@ -45,9 +57,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.7.2",
-    "re-resizable": "^6.4.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "shineout": "^1.5.2"
+    "react-dom": "^16.13.1"
   }
 }
