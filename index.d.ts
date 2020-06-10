@@ -12,6 +12,7 @@ export interface MonacoEditorProps {
   theme?: string,
   options?: EditorOptions,
   style?: object,
+  editorWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
 }

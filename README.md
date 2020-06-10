@@ -46,7 +46,7 @@ class Index extends React.Component {
             console.log('editor value: ', value)
           }}
           editorDidMount={(editor, monaco) => {
-            console.log("editor instantiation: ", editor)
+            console.log("editor instance: ", editor)
             console.log("monaco: ", monaco)
           }}
         />

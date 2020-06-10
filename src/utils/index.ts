@@ -1,4 +1,4 @@
-import debounce from "lodash.debounce"
+import debounce from 'lodash.debounce'
 
 // 判断模板数据类型
 export function isType(type: string) {
@@ -41,14 +41,14 @@ interface StyleParams {
   height: number
 }
 
-export const noop = (params?: StyleParams): void => { }
+export const noop = (): void => { }
 
-const cb = (handle = (params: StyleParams): void => { }) => debounce(e => handle({
+const cb = (handle: Function) => debounce((e) => handle({
   height: e.target.innerHeight,
-  width: e.target.innerWidth
+  width: e.target.innerWidth,
 }), 32)
 
-export const addEvent = (target: Window | null, handle = (params: StyleParams): void => { }): void => {
+export const addEvent = (target: Window | null, handle: Function): void => {
   if (target == null) {
     return
   }
@@ -56,7 +56,7 @@ export const addEvent = (target: Window | null, handle = (params: StyleParams): 
   target.addEventListener('resize', cb(handle))
 }
 
-export const removeEvent = (target: Window | null, handle = (params: StyleParams): void => { }): void => {
+export const removeEvent = (target: Window | null, handle: Function): void => {
   if (target == null) {
     return
   }

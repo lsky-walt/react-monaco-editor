@@ -272,7 +272,7 @@ export const themes: Themes = {
       'editorWhitespace.foreground': '#BFBFBF',
     },
   },
-  'chrome': {
+  chrome: {
     base: 'vs',
     inherit: true,
     rules: [
