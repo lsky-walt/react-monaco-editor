@@ -1,4 +1,13 @@
-# react-monaco-editor
+<!-- logo -->
+<p align="center" style="padding-top: 40px">
+  <img src="./assets/images/logo.svg?sanitize=true" width="120" alt="logo" />
+</p>
+<!-- logo -->
+
+<!-- title -->
+<h1 align="center" style="text-align: center">react-monaco-editor</h1>
+<!-- title -->
+
 
 [Monaco Editor](https://microsoft.github.io/monaco-editor/) for [React](https://reactjs.org/)
 
@@ -13,6 +22,42 @@ $ yarn add @lsky/react-monaco-editor
 
 ```
 
+## Example
+
+```javascript
+
+import React from 'react';
+import examples from '@src/examples'
+// component
+import MonacoEditor from '@lsky/react-monaco-editor'
+
+
+class Index extends React.Component {
+  render() {
+    return (
+      <div style={{ padding: '20px' }}>
+        <h2>Monaco Editor base example</h2>
+        <MonacoEditor
+          width={800}
+          height={500}
+          language="javascript"
+          value={examples['javascript']}
+          onChange={(value) => {
+            console.log('editor value: ', value)
+          }}
+          editorDidMount={(editor, monaco) => {
+            console.log("editor instantiation: ", editor)
+            console.log("monaco: ", monaco)
+          }}
+        />
+      </div>
+    )
+  }
+}
+
+
+export default Index
+```
 
 ## Development
 
