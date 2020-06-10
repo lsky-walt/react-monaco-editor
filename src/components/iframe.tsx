@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { addEvent, removeEvent } from '../utils'
 
 import styles from '../style/iframe.less'
@@ -14,6 +14,7 @@ interface IframeProps {
 
 class Index extends React.Component<IframeProps> {
   private iframe: HTMLIFrameElement | null
+
   constructor(props: IframeProps) {
     super(props)
 
@@ -25,7 +26,7 @@ class Index extends React.Component<IframeProps> {
     if (this.iframe) {
       updateStyle({
         width: this.iframe.offsetWidth,
-        height: this.iframe.offsetHeight
+        height: this.iframe.offsetHeight,
       })
 
       addEvent(this.iframe.contentWindow, updateStyle)
@@ -45,7 +46,7 @@ class Index extends React.Component<IframeProps> {
 
   render() {
     return (
-      <iframe className={styles['iframe']} ref={this.bindRef}></iframe>
+      <iframe title="monaco-editor-iframe" className={styles.iframe} ref={this.bindRef} />
     )
   }
 }

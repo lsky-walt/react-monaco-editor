@@ -16,9 +16,13 @@ interface Config {
 
 class Monaco {
   private __config: Config
+
   public wrapperPromise: Promise<any>
+
   public resolve: Function
+
   public reject: Function
+
   private isInitialized: boolean
 
   constructor(config: Config) {
@@ -35,14 +39,6 @@ class Monaco {
     })
 
     this.isInitialized = false
-  }
-
-  config(config: Config) {
-    if (config) {
-      this.__config = merge(this.__config, config)
-    }
-
-    return this
   }
 
   injectScripts(script: HTMLScriptElement) {

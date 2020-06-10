@@ -1,11 +1,11 @@
 
 import React from 'react'
 
+import debounce from 'lodash.debounce'
 import MonacoContainer from './monaco-container'
 
 import monacoEditor from './init'
 import { isFunc, isNumber } from '../utils'
-import debounce from 'lodash.debounce'
 
 // themes
 import { themes } from '../config/themes'
@@ -22,6 +22,7 @@ export interface EditorProps {
   language: string,
   theme?: string,
   options?: EditorOptions,
+  editorWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
 }
@@ -32,9 +33,10 @@ interface EditorState {
 }
 
 class Index extends React.Component<EditorProps, EditorState> {
-
   private container: null | HTMLDivElement
+
   public monaco: any
+
   public editor: any
 
 
@@ -43,7 +45,7 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     this.state = {
       ready: false,
-      monacoDidMount: false
+      monacoDidMount: false,
     }
 
     this.container = null
@@ -52,9 +54,12 @@ class Index extends React.Component<EditorProps, EditorState> {
   }
 
   componentDidMount() {
+    // editor will mount
+    const { editorWillMount = () => { } } = this.props
     const that = this
     monacoEditor.init()
-      .then(m => {
+      .then((m) => {
+        if (isFunc(editorWillMount)) editorWillMount(m)
         that.monaco = m
         that.setState({ monacoDidMount: true })
       })
@@ -66,7 +71,9 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     if (!ready) this.createEditor()
 
-    const { width = '100%', height = '100%', value, language, theme, options = {} } = this.props
+    const {
+      width = '100%', height = '100%', value, language, theme, options = {},
+    } = this.props
 
     if (value !== prevProps.value) {
       if (options.readOnly) {
@@ -108,20 +115,22 @@ class Index extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  bindRef(node: HTMLDivElement | null) {
-    this.container = node
-  }
-
   calc = (n: number | string) => {
     if (!n) return 0
     if (typeof n === 'string') return n
     return n - 2
   }
 
+  bindRef(node: HTMLDivElement | null) {
+    this.container = node
+  }
+
   createEditor() {
     if (!this.monaco || !this.container) return
 
-    const { value, language, options, theme = 'vs', editorDidMount = () => { }, onChange = () => { } } = this.props
+    const {
+      value, language, options, theme = 'vs', editorDidMount = () => { }, onChange = () => { },
+    } = this.props
 
     const that = this
 
@@ -143,7 +152,7 @@ class Index extends React.Component<EditorProps, EditorState> {
     }
 
     // theme
-    Object.keys(themes).forEach(t => {
+    Object.keys(themes).forEach((t) => {
       that.monaco.editor.defineTheme(t, themes[t])
     })
     this.monaco.editor.setTheme(theme)

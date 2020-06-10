@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
 
+import { Button } from 'shineout'
 import { examples } from '../example'
 
+// eslint-disable-next-line no-unused-vars
 import { BaseProps } from './base'
 
 import MonacoEditor from '../../src/index'
-import { Button } from 'shineout';
 
 interface ResizeState {
   width: number,
@@ -31,15 +32,19 @@ class Index extends React.Component<BaseProps, ResizeState> {
           const { width, height } = this.state
           this.setState({
             width: width === 600 ? 800 : 600,
-            height: height === 400 ? 600 : 400
+            height: height === 400 ? 600 : 400,
           })
-        }}>change style</Button>
+        }}
+        >
+          change style
+
+        </Button>
         <MonacoEditor
           width={width}
           height={height}
-          language={"go"}
-          value={examples["go"]}
-        ></MonacoEditor>
+          language="go"
+          value={examples.go}
+        />
       </div>
     )
   }

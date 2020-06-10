@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
+import { Select } from 'shineout'
 import { examples } from '../example'
 
 // component
-import { Select } from 'shineout'
 import MonacoEditor from '../../src/index'
 
 export interface BaseProps { }
@@ -75,7 +75,7 @@ class Index extends React.Component<BaseProps, BaseState> {
     super(props)
     this.state = {
       theme: 'vs',
-      language: 'javascript'
+      language: 'javascript',
     }
   }
 
@@ -86,36 +86,37 @@ class Index extends React.Component<BaseProps, BaseState> {
         <h2>Monaco Editor base example</h2>
         <div style={{
           display: 'flex',
-          padding: '10px'
-        }}>
+          padding: '10px',
+        }}
+        >
           <Select
             width={200}
             data={[
-              "vs",
-              "vs-dark",
-              "active4d",
-              "clouds",
-              "chrome",
-              "monokai",
-              "solarized-dark",
-              "solarized-light",
+              'vs',
+              'vs-dark',
+              'active4d',
+              'clouds',
+              'chrome',
+              'monokai',
+              'solarized-dark',
+              'solarized-light',
 
             ]}
-            keygen={d => d}
+            keygen={(d) => d}
             value={theme}
             onChange={(t) => {
               this.setState({ theme: t })
             }}
-          ></Select>
+          />
           <Select
             width={200}
             data={languages}
-            keygen={d => d}
+            keygen={(d) => d}
             value={language}
             onChange={(l) => {
               this.setState({ language: l })
             }}
-          ></Select>
+          />
         </div>
         <MonacoEditor
           width={800}
@@ -126,7 +127,7 @@ class Index extends React.Component<BaseProps, BaseState> {
           onChange={(value: string | null) => {
             console.log('editor value: ', value)
           }}
-        ></MonacoEditor>
+        />
       </div>
     )
   }

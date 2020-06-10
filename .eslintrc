@@ -1,6 +1,7 @@
 {
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
   "env": {
@@ -9,35 +10,20 @@
     "node": true,
     "jest": true
   },
-  "plugins": ["react", "@typescript-eslint", "plugin:import/typescript"],
-  "parserOptions": {        //指定ESLint可以解析JSX语法
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "parserOptions": { //指定ESLint可以解析JSX语法
     "ecmaVersion": 2019,
     "sourceType": "module",
-    "ecmaFeatures":{
-        "jsx":true
+    "ecmaFeatures": {
+      "jsx": true
     }
   },
   "settings": {
     "react": {
       "version": "detect" // 自动读取已安装的react版本
-    },
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-   ],
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    },
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
     }
   },
   "rules": {
@@ -49,28 +35,32 @@
     "react/no-array-index-key": 0,
     "react/jsx-indent": 0,
     "react/no-find-dom-node": 0,
+    "react/static-property-placement": 0,
+    "react/jsx-props-no-spreading": 0,
     "react/require-default-props": 0,
     "semi": [
-        2,
-        "never"
+      2,
+      "never"
     ],
     "global-require": 0,
     "import/no-duplicates": 0,
     "import/no-extraneous-dependencies": 0,
     "import/no-webpack-loader-syntax": 0,
     "import/prefer-default-export": 0,
+    "import/extensions": 0,
     "max-len": 0,
     "no-console": 0,
     "no-continue": 0,
     "no-labels": 0,
     "no-restricted-syntax": 0,
     "no-script-url": 0,
+    "no-unused-vars": 0,
     "no-param-reassign": 0,
     "no-plusplus": [
-        "error",
-        {
-            "allowForLoopAfterthoughts": true
-        }
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
     ],
     "no-static-element-interactions": 0,
     "jsx-a11y/anchor-is-valid": 0,
