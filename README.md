@@ -91,4 +91,5 @@ yarn start
 | options | object | null | [IEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html) |
 | style | object | null | editor outer container style |
 | onChange | func | (value) => void | triggered when the editor value changes |
+| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (editor, monaco) => void | triggered when the editor did mounted |
