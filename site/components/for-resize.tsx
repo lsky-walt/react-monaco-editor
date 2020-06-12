@@ -29,7 +29,6 @@ class Index extends React.Component<BaseProps, ResizeState> {
       <div style={{ padding: '20px' }}>
         <h2>Monaco Editor Resize Container example</h2>
         <Button onClick={() => {
-          const { width, height } = this.state
           this.setState({
             width: width === 600 ? 800 : 600,
             height: height === 400 ? 600 : 400,

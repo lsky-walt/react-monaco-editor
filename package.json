@@ -45,7 +45,7 @@
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
     "postcss-loader": "^3.0.0",
-    "shineout": "1.6.0-rc.13",
+    "shineout": "1.6.0-rc.16",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
