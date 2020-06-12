@@ -1,23 +1,23 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './src/index.tsx'
+    index: './src/index.tsx',
   },
   devtool: 'inline-cheap-source-map',
   mode: 'development',
   output: {
     filename: 'index.js',
     libraryTarget: 'umd',
-    path: path.resolve(__dirname, '../dist/')
+    path: path.resolve(__dirname, '../dist/'),
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: ['babel-loader', 'ts-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/,
@@ -27,17 +27,17 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]--[hash:base64:5]'
+                localIdentName: '[name]__[local]--[hash:base64:5]',
               },
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           'postcss-loader',
-          'less-loader'
+          'less-loader',
         ],
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   externals: {
     react: {
@@ -57,6 +57,6 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin()
-  ]
+    new CleanWebpackPlugin(),
+  ],
 }

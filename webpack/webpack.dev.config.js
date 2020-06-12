@@ -1,11 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    index: './site/index.tsx'
+    index: './site/index.tsx',
   },
   devtool: 'inline-source-map',
   module: {
@@ -13,7 +13,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: ['babel-loader', 'ts-loader'],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/,
@@ -23,53 +23,44 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                localIdentName: '[name]__[local]--[hash:base64:5]'
+                localIdentName: '[name]__[local]--[hash:base64:5]',
               },
-              importLoaders: 2
-            }
+              importLoaders: 2,
+            },
           },
           'postcss-loader',
-          'less-loader'
+          'less-loader',
         ],
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-    },
-    'react-dom': {
-      root: 'ReactDOM',
-      commonjs2: 'react-dom',
-      commonjs: 'react-dom',
-      amd: 'react-dom',
-    },
+    react: 'window.React',
+    'react-dom': 'window.ReactDOM',
+    shineout: 'window.Shineout',
   },
   devServer: {
-    //这个本地开发环境运行时是基于哪个文件夹作为根目录
+    // 这个本地开发环境运行时是基于哪个文件夹作为根目录
     contentBase: './dist',
-    //当你有错误的时候在控制台打出
+    // 当你有错误的时候在控制台打出
     stats: 'errors-only',
-    //不启动压缩
+    // 不启动压缩
     compress: false,
     host: 'localhost',
-    port: 8080
+    port: 8080,
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      template: './site/index.html'
-    })
+      template: './site/index.html',
+    }),
   ],
   output: {
     filename: '[name].bundle.[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
-  }
+    path: path.resolve(__dirname, 'dist'),
+  },
 }
