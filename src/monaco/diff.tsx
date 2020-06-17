@@ -17,7 +17,7 @@ export interface DiffProps {
   theme?: string,
   options?: object,
   editorWillMount?: (monaco: any) => void,
-  editorDidMount?: (original: string, modified: string, editor: any) => void,
+  editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
 }
 
 interface EditorState {
