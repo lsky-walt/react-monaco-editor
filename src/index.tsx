@@ -2,7 +2,8 @@ import React from 'react'
 // eslint-disable-next-line no-unused-vars
 import MonacoEditor, { EditorProps } from './monaco/editor'
 
-import DiffEditor, { DiffProps } from './monaco/diff'
+import { DiffProps } from './monaco/diff'
+import DiffEditor from './diff.editor'
 
 
 export interface MonacoEditorProps extends EditorProps {

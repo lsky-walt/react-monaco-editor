@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import Base from './components/base'
 import Resizer from './components/for-resize'
+import Diff from './components/diff'
 
 class Index extends React.PureComponent {
   render() {
@@ -9,6 +10,7 @@ class Index extends React.PureComponent {
       <>
         <Base />
         <Resizer />
+        <Diff />
       </>
     )
   }
