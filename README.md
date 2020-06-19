@@ -24,6 +24,7 @@ $ yarn add @lsky/react-monaco-editor
 
 ## Example
 
+### Editor
 ```javascript
 
 import React from 'react';
@@ -51,6 +52,33 @@ class Index extends React.Component {
           }}
         />
       </div>
+    )
+  }
+}
+
+
+export default Index
+```
+
+
+### Diff
+```javascript
+
+import React from 'react'
+import { DiffEditor } from '@lsky/react-monaco-editor'
+import { diffExamples } from '@src/example'
+
+
+class Index extends React.PureComponent {
+  render() {
+    return (
+      <DiffEditor
+        width={600}
+        height={400}
+        original={diffExamples.original}
+        modified={diffExamples.modified}
+        language="markdown"
+      />
     )
   }
 }

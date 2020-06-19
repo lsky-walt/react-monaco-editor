@@ -11,8 +11,8 @@ export interface DiffProps {
   height?: number | string,
   original: string,
   modified: string,
-  originalLanguage: string,
-  modifiedLanguage: string,
+  originalLanguage?: string,
+  modifiedLanguage?: string,
   language: string,
   theme?: string,
   options?: object,
@@ -31,8 +31,6 @@ class Index extends React.Component<DiffProps, EditorState> {
   public editor: any;
 
   public container: HTMLDivElement | null
-
-  static displayName: string
 
   constructor(props: DiffProps) {
     super(props)
@@ -72,8 +70,12 @@ class Index extends React.Component<DiffProps, EditorState> {
 
     const {
       original, originalLanguage, modified, modifiedLanguage, language,
-      theme, options,
+      theme, options, height, width,
     } = this.props
+
+    if (prevProps.width !== width || prevProps.height !== height) {
+      this.editor.layout({ width, height })
+    }
 
     // original
     if (prevProps.original !== original) {
@@ -137,13 +139,14 @@ class Index extends React.Component<DiffProps, EditorState> {
 
     this.editor = this.monaco.editor.createDiffEditor(this.container, {
       ...options,
+      automaticLayout: true,
     })
 
     this.setModels()
 
     const { original, modified } = this.editor.getModel()
 
-    if (!isFunc(editorDidMount)) {
+    if (isFunc(editorDidMount)) {
       editorDidMount(
         original.getValue.bind(original),
         modified.getValue.bind(modified),
@@ -168,6 +171,7 @@ class Index extends React.Component<DiffProps, EditorState> {
         width={width}
         height={height}
         ready={ready}
+        needBorder={false}
         bindRef={this.bindRef}
       />
     )
