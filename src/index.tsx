@@ -1,4 +1,6 @@
 import React from 'react'
+import { AutoSizer } from 'react-virtualized/dist/commonjs/AutoSizer'
+
 // eslint-disable-next-line no-unused-vars
 import MonacoEditor, { EditorProps } from './monaco/editor'
 
@@ -30,6 +32,7 @@ DiffEditor.displayName = 'DiffEditor'
 
 export {
   DiffEditor,
+  AutoSizer,
 }
 
 export default Index

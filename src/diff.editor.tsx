@@ -1,8 +1,8 @@
 import React from 'react'
-import { isEmpty, isFunc, isNumber } from './utils'
+import { AutoSizer, Size } from 'react-virtualized/dist/commonjs/AutoSizer'
+import { isEmpty, isFunc } from './utils'
 
 import Diff, { DiffProps } from './monaco/diff'
-import Iframe, { StyleParams } from './components/iframe'
 
 import styles from './style/diff.editor.less'
 
@@ -26,11 +26,13 @@ class Index extends React.Component<DiffProps, DiffState> {
     this.editorDidMount = this.editorDidMount.bind(this)
   }
 
-  updateContainer(obj: StyleParams) {
+  updateContainer(obj: Size) {
+    const { width: w, height: h } = this.state
     if (isEmpty(obj)) {
       return
     }
     const { width, height } = obj
+    if (width === w && height === h) return
     this.setState({ width, height })
   }
 
@@ -52,19 +54,25 @@ class Index extends React.Component<DiffProps, DiffState> {
     const {
       width: w, height: h, editorDidMount, ...others
     } = this.props
-    const { width, height } = this.state
     return (
       <div
         className={styles['diff-container']}
-        style={{ width, height }}
+        style={{ width: w, height: h }}
       >
-        <Iframe updateStyle={this.updateContainer} />
-        <Diff
-          {...others}
-          width={width}
-          height={height}
-          editorDidMount={this.editorDidMount}
-        />
+        <AutoSizer>
+          {({ width, height }) => {
+            if (width === 0 || height === 0) return null
+            this.updateContainer({ width, height })
+            return (
+              <Diff
+                {...others}
+                width={width}
+                height={height}
+                editorDidMount={this.editorDidMount}
+              />
+            )
+          }}
+        </AutoSizer>
       </div>
     )
   }

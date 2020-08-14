@@ -1,6 +1,6 @@
 {
   "name": "@lsky/react-monaco-editor",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "./lib/index.js",
   "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
@@ -27,6 +27,7 @@
     "@types/lodash.merge": "^4.6.6",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-virtualized": "^9.21.10",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "autoprefixer": "^9.8.0",
@@ -58,6 +59,7 @@
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-virtualized": "^9.22.2"
   }
 }
