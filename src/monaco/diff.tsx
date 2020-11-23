@@ -178,7 +178,6 @@ class Index extends React.Component<DiffProps, EditorState> {
   render() {
     const { ready } = this.state
     const { width = '100%', height = '100%' } = this.props
-    console.log('ready: ', ready)
     return (
       <MonacoContainer
         width={width}
