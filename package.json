@@ -57,6 +57,7 @@
   "dependencies": {
     "@lsky/v-table": "^0.0.4",
     "clsx": "^1.1.1",
+    "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
