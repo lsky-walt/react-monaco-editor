@@ -119,7 +119,6 @@ class Index extends React.Component<BaseProps, BaseState> {
           />
         </div>
         <MonacoEditor
-          width={800}
           height={500}
           language={language}
           value={examples[language]}

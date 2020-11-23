@@ -6,6 +6,12 @@ import monacoEditorInit from './init'
 
 import { themes } from '../config/themes'
 
+
+interface EditorOptions {
+  width?: number | 0,
+  height?: number | 0,
+  [propName: string]: any
+}
 export interface DiffProps {
   width?: number | string,
   height?: number | string,
@@ -15,7 +21,7 @@ export interface DiffProps {
   modifiedLanguage?: string,
   language: string,
   theme?: string,
-  options?: object,
+  options?: EditorOptions,
   editorWillMount?: (monaco: any) => void,
   editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
 }
@@ -31,6 +37,8 @@ class Index extends React.Component<DiffProps, EditorState> {
   public editor: any;
 
   public container: HTMLDivElement | null
+
+  static displayName = 'MonacoDiffEditor'
 
   constructor(props: DiffProps) {
     super(props)
@@ -134,7 +142,9 @@ class Index extends React.Component<DiffProps, EditorState> {
   }
 
   createEditor() {
-    const { editorDidMount = () => { }, theme, options } = this.props
+    const {
+      editorDidMount = () => { }, theme, options, width, height,
+    } = this.props
     if (!this.monaco || !this.container) return
 
     this.editor = this.monaco.editor.createDiffEditor(this.container, {
@@ -160,12 +170,15 @@ class Index extends React.Component<DiffProps, EditorState> {
 
     this.monaco.editor.setTheme(theme)
 
+    this.editor.layout({ width, height })
+
     this.setState({ ready: true })
   }
 
   render() {
     const { ready } = this.state
     const { width = '100%', height = '100%' } = this.props
+    console.log('ready: ', ready)
     return (
       <MonacoContainer
         width={width}

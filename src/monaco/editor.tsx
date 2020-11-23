@@ -17,7 +17,7 @@ export interface EditorOptions {
 
 export interface EditorProps {
   width?: number | string,
-  height?: number | string,
+  height: number | string,
   value: string,
   language: string,
   theme?: string,
@@ -38,6 +38,9 @@ class Index extends React.Component<EditorProps, EditorState> {
   public monaco: any
 
   public editor: any
+
+
+  static displayName = 'MonacoEditor'
 
 
   constructor(props: EditorProps) {

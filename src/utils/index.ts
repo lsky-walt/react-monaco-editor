@@ -1,4 +1,3 @@
-import debounce from 'lodash.debounce'
 
 // 判断模板数据类型
 export function isType(type: string) {
@@ -34,31 +33,4 @@ export function isEmpty(data: any) {
   }
 
   return false
-}
-
-interface StyleParams {
-  width: number,
-  height: number
-}
-
-export const noop = (): void => { }
-
-const cb = (handle: Function) => debounce((e) => handle({
-  height: e.target.innerHeight,
-  width: e.target.innerWidth,
-}), 32)
-
-export const addEvent = (target: Window | null, handle: Function): void => {
-  if (target == null) {
-    return
-  }
-
-  target.addEventListener('resize', cb(handle))
-}
-
-export const removeEvent = (target: Window | null, handle: Function): void => {
-  if (target == null) {
-    return
-  }
-  target.removeEventListener('resize', cb(handle))
 }

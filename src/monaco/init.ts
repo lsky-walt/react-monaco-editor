@@ -1,3 +1,4 @@
+/* eslint-disable */
 import merge from 'lodash.merge'
 import { monacoLoader, monaco } from '../config'
 

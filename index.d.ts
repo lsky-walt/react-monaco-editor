@@ -6,7 +6,7 @@ export interface EditorOptions {
 }
 export interface MonacoEditorProps {
   width?: number | string,
-  height?: number | string,
+  height: number | string,
   value: string,
   language: string,
   theme?: string,
@@ -59,7 +59,7 @@ export class AutoSizer extends PureComponent<AutoSizerProps, Size> {
 
 export interface DiffProps {
   width?: number | string,
-  height?: number | string,
+  height: number | string,
   original: string,
   modified: string,
   originalLanguage?: string,
