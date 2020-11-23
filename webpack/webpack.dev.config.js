@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     index: './site/index.tsx',
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

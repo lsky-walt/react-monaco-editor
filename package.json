@@ -1,6 +1,6 @@
 {
   "name": "@lsky/react-monaco-editor",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "./lib/index.js",
   "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
@@ -55,7 +55,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8",
+    "@lsky/v-table": "^0.0.4",
+    "clsx": "^1.1.1",
     "lodash.merge": "^4.6.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
