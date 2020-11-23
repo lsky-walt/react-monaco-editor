@@ -22,6 +22,8 @@ export interface EditorProps {
   language: string,
   theme?: string,
   options?: EditorOptions,
+  loading?: React.ReactNode,
+  uri?: any,
   editorWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
@@ -133,6 +135,7 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     const {
       value, language, options, theme = 'vs', editorDidMount = () => { }, onChange = () => { },
+      uri,
     } = this.props
 
     const that = this
@@ -141,6 +144,7 @@ class Index extends React.Component<EditorProps, EditorState> {
       model: this.monaco.editor.createModel(
         value,
         language,
+        uri ? this.monaco.Uri.parse(uri) : null,
       ),
       automaticLayout: true,
       ...options,
@@ -165,10 +169,11 @@ class Index extends React.Component<EditorProps, EditorState> {
   }
 
   render() {
-    const { width = '100%', height = '100%' } = this.props
+    const { width = '100%', height = '100%', loading } = this.props
     const { ready } = this.state
     return (
       <MonacoContainer
+        loading={loading}
         width={width}
         height={height}
         ready={ready}
