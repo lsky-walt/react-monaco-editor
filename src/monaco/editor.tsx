@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 import debounce from 'lodash.debounce'
@@ -10,21 +9,25 @@ import { isFunc, isNumber } from '../utils'
 // themes
 import { themes } from '../config/themes'
 
-export interface EditorOptions {
-  readonly?: boolean | undefined,
+export interface ObjectOptions {
   [propName: string]: any
 }
 
+export interface EditorOptions extends ObjectOptions {
+  readonly?: boolean | undefined,
+}
+
 export interface EditorProps {
-  width?: number | string,
-  height: number | string,
+  width?: number,
+  height: number,
   value: string,
   language: string,
   theme?: string,
+  line?: number,
   options?: EditorOptions,
   loading?: React.ReactNode,
-  uri?: any,
-  editorWillMount?: (monaco: any) => void,
+  modelOptions?: Array<any>,
+  monacoWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
 }
@@ -41,9 +44,7 @@ class Index extends React.Component<EditorProps, EditorState> {
 
   public editor: any
 
-
   static displayName = 'MonacoEditor'
-
 
   constructor(props: EditorProps) {
     super(props)
@@ -60,11 +61,11 @@ class Index extends React.Component<EditorProps, EditorState> {
 
   componentDidMount() {
     // editor will mount
-    const { editorWillMount = () => { } } = this.props
+    const { monacoWillMount = () => { } } = this.props
     const that = this
     monacoEditor.init()
       .then((m) => {
-        if (isFunc(editorWillMount)) editorWillMount(m)
+        if (isFunc(monacoWillMount)) monacoWillMount(m)
         that.monaco = m
         that.setState({ monacoDidMount: true })
       })
@@ -77,7 +78,7 @@ class Index extends React.Component<EditorProps, EditorState> {
     if (!ready) this.createEditor()
 
     const {
-      width = '100%', height = '100%', value, language, theme, options = {},
+      width, height, value, language, theme, options = {}, line,
     } = this.props
 
     if (value !== prevProps.value) {
@@ -94,6 +95,10 @@ class Index extends React.Component<EditorProps, EditorState> {
       this.editor.pushUndoStop()
     }
 
+    if (line !== prevProps.line) {
+      this.editor.setScrollPosition({ scrollTop: line })
+    }
+
     if (language !== prevProps.language) {
       this.editor.setValue(value)
       this.monaco.editor.setModelLanguage(this.editor.getModel(), language)
@@ -102,7 +107,6 @@ class Index extends React.Component<EditorProps, EditorState> {
     if ((prevProps.width !== width || prevProps.height !== height) && isNumber(width) && isNumber(height)) {
       this.editor.layout({ width: this.calc(width), height: this.calc(height) })
     }
-
 
     // theme
     if (theme !== prevProps.theme) {
@@ -120,7 +124,7 @@ class Index extends React.Component<EditorProps, EditorState> {
     }
   }
 
-  calc = (n: number | string) => {
+  calc = (n: number | undefined) => {
     if (!n) return 0
     if (typeof n === 'string') return n
     return n - 2
@@ -135,7 +139,7 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     const {
       value, language, options, theme = 'vs', editorDidMount = () => { }, onChange = () => { },
-      uri,
+      modelOptions = [],
     } = this.props
 
     const that = this
@@ -144,7 +148,7 @@ class Index extends React.Component<EditorProps, EditorState> {
       model: this.monaco.editor.createModel(
         value,
         language,
-        uri ? this.monaco.Uri.parse(uri) : null,
+        ...modelOptions,
       ),
       automaticLayout: true,
       ...options,
@@ -169,7 +173,7 @@ class Index extends React.Component<EditorProps, EditorState> {
   }
 
   render() {
-    const { width = '100%', height = '100%', loading } = this.props
+    const { width, height, loading } = this.props
     const { ready } = this.state
     return (
       <MonacoContainer
@@ -182,6 +186,5 @@ class Index extends React.Component<EditorProps, EditorState> {
     )
   }
 }
-
 
 export default Index

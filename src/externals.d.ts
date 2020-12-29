@@ -3,7 +3,6 @@ declare module '*.less' {
   export default content
 }
 
-
 declare module '*.json' {
   const content: any
   export default content
