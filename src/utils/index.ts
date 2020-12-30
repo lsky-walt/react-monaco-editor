@@ -1,9 +1,7 @@
-
 // 判断模板数据类型
 export function isType(type: string) {
   return (obj: any) => Object.prototype.toString.call(obj) === `[object ${type}]`
 }
-
 
 export const isArray = isType('Array')
 
@@ -14,7 +12,6 @@ export const isNumber = isType('Number')
 export const isString = isType('String')
 
 export const isFunc = isType('Function')
-
 
 export function isEmpty(data: any) {
   if (

@@ -12,7 +12,7 @@ export interface MonacoEditorProps {
   theme?: string,
   options?: EditorOptions,
   style?: object,
-  editorWillMount?: (monaco: any) => void,
+  monacoWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
 }
@@ -56,7 +56,6 @@ export class AutoSizer extends PureComponent<AutoSizerProps, Size> {
   render(): JSX.Element
 }
 
-
 export interface DiffProps {
   width?: number | string,
   height: number | string,
@@ -67,7 +66,7 @@ export interface DiffProps {
   language: string,
   theme?: string,
   options?: object,
-  editorWillMount?: (monaco: any) => void,
+  monacoWillMount?: (monaco: any) => void,
   editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
 }
 

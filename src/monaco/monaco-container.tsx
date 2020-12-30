@@ -3,8 +3,8 @@ import React from 'react'
 import styles from '../style/monaco-container.less'
 
 interface MonacoContainerProps {
-  width: string | number,
-  height: string | number,
+  width?: number,
+  height?: number,
   ready: boolean,
   needBorder?: boolean,
   loading?: React.ReactNode,
@@ -24,6 +24,5 @@ class Index extends React.PureComponent<MonacoContainerProps> {
     )
   }
 }
-
 
 export default Index

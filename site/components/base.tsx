@@ -12,7 +12,6 @@ interface BaseState {
   language: 'javascript'
 }
 
-
 const languages = ['apex',
   'azcli',
   'bat',
@@ -131,6 +130,5 @@ class Index extends React.Component<BaseProps, BaseState> {
     )
   }
 }
-
 
 export default Index

@@ -5,7 +5,6 @@ import MonacoEditor, { EditorProps } from './monaco/editor'
 
 import DiffEditor, { DiffProps } from './monaco/diff'
 
-
 export interface MonacoEditorProps extends EditorProps {
   style?: object
 }

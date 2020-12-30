@@ -58,7 +58,6 @@ export const examples = {
   yaml: '%TAG ! tag:clarkevans.com,2002:\n--- !shape\n  # Use the ! handle for presenting\n  # tag:clarkevans.com,2002:circle\n- !circle\n  center: &ORIGIN {x: 73, y: 129}\n  radius: 7\n- !line\n  start: *ORIGIN\n  finish: { x: 89, y: 102 }\n- !label\n  start: *ORIGIN\n  color: 0xFFEEBB\n  text: Pretty vector drawing.',
 }
 
-
 export const diffExamples = {
   original: `
   <!-- logo -->
@@ -154,7 +153,7 @@ yarn start
 | options | object | null | [IEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html) |
 | style | object | null | editor outer container style |
 | onChange | func | (value) => void | triggered when the editor value changes |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (editor, monaco) => void | triggered when the editor did mounted |
 
 
@@ -174,7 +173,7 @@ yarn start
 | theme | string | vs | vs, vs-dark, active4d, clouds, chrome, monokai, solarized-dark, solarized-light, [MonacoTheme](https://github.com/brijeshb42/monaco-themes) |
 | options | object | null | [IDiffEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html) |
 | style | object | null | diff editor outer container style |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (original: (value) => void, modified: (value: string) => void, editor) => void | triggered when the diff editor did mounted |
   `,
   modified:
@@ -272,7 +271,7 @@ yarn start
 | options | object | null | [IEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html) |
 | style | object | null | editor outer container style |
 | onChange | func | (value) => void | triggered when the editor value changes |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (editor, monaco) => void | triggered when the editor did mounted |
 
 
@@ -292,7 +291,7 @@ yarn start
 | theme | string | vs | vs, vs-dark, active4d, clouds, chrome, monokai, solarized-dark, solarized-light, [MonacoTheme](https://github.com/brijeshb42/monaco-themes) |
 | options | object | null | [IDiffEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html) |
 | style | object | null | diff editor outer container style |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (original: (value) => void, modified: (value: string) => void, editor) => void | triggered when the diff editor did mounted |
   `,
 }

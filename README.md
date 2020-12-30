@@ -112,14 +112,17 @@ yarn start
 | Name | Type | Default | Description |
 |:--------------|:-------------|:-------------|:---------------|
 | value | string | null | editor value |
-| width | number \| 100% | null | editor width |
-| height | number \| 100% | null | editor height |
+| width | number | null | editor width |
+| height | number | null | editor height |
 | language | string | null | editor language |
 | theme | string | vs | vs, vs-dark, active4d, clouds, chrome, monokai, solarized-dark, solarized-light, [MonacoTheme](https://github.com/brijeshb42/monaco-themes) |
 | options | object | null | [IEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html) |
+| loading | React.ReactNode | null | loading ?? |
+| line | number | null | line number |
+| modelOptions | Array<any> | null | monaco.editor.createModel(value, language, ...modelOptions) |
 | style | object | null | editor outer container style |
 | onChange | func | (value) => void | triggered when the editor value changes |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (editor, monaco) => void | triggered when the editor did mounted |
 
 
@@ -131,13 +134,13 @@ yarn start
 |:--------------|:-------------|:-------------|:---------------|
 | original | string | null | diff editor original value |
 | modified | string | null | diff editor modified value |
-| width | number \| 100% | null | diff editor width |
-| height | number \| 100% | null | diff editor height |
+| width | number | null | diff editor width |
+| height | number | null | diff editor height |
 | language | string | null | diff editor language |
 | originalLanguage | string | null | diff editor original language |
 | modifiedLanguage | string | null | diff editor modified language |
 | theme | string | vs | vs, vs-dark, active4d, clouds, chrome, monokai, solarized-dark, solarized-light, [MonacoTheme](https://github.com/brijeshb42/monaco-themes) |
 | options | object | null | [IDiffEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html) |
 | style | object | null | diff editor outer container style |
-| editorWillMount | func | (monaco) => void | triggered when the monaco will mounted |
+| monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (original: (value) => void, modified: (value: string) => void, editor) => void | triggered when the diff editor did mounted |

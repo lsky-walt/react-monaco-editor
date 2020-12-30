@@ -6,15 +6,14 @@ import monacoEditorInit from './init'
 
 import { themes } from '../config/themes'
 
-
 interface EditorOptions {
   width?: number | 0,
   height?: number | 0,
   [propName: string]: any
 }
 export interface DiffProps {
-  width?: number | string,
-  height?: number | string,
+  width?: number,
+  height?: number,
   original: string,
   modified: string,
   originalLanguage?: string,
@@ -22,7 +21,7 @@ export interface DiffProps {
   language: string,
   theme?: string,
   options?: EditorOptions,
-  editorWillMount?: (monaco: any) => void,
+  monacoWillMount?: (monaco: any) => void,
   editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
 }
 
@@ -53,17 +52,16 @@ class Index extends React.Component<DiffProps, EditorState> {
 
     this.container = null
 
-
     this.bindRef = this.bindRef.bind(this)
     this.createEditor = this.createEditor.bind(this)
   }
 
   componentDidMount() {
     const that = this
-    const { editorWillMount = () => { } } = this.props
+    const { monacoWillMount = () => { } } = this.props
     monacoEditorInit.init()
       .then((m) => {
-        if (isFunc(editorWillMount)) editorWillMount(m)
+        if (isFunc(monacoWillMount)) monacoWillMount(m)
         that.monaco = m
         that.setState({ monacoDidMount: true })
       })
@@ -122,7 +120,6 @@ class Index extends React.Component<DiffProps, EditorState> {
     }
   }
 
-
   setModels() {
     const {
       original, modified, originalLanguage, modifiedLanguage, language,
@@ -177,7 +174,7 @@ class Index extends React.Component<DiffProps, EditorState> {
 
   render() {
     const { ready } = this.state
-    const { width = '100%', height = '100%' } = this.props
+    const { width, height } = this.props
     return (
       <MonacoContainer
         width={width}
@@ -189,6 +186,5 @@ class Index extends React.Component<DiffProps, EditorState> {
     )
   }
 }
-
 
 export default Index

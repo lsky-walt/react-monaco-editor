@@ -2,7 +2,6 @@ import React from 'react'
 import { DiffEditor } from '../../src'
 import { diffExamples } from '../example'
 
-
 class Index extends React.PureComponent {
   render() {
     return (
@@ -16,6 +15,5 @@ class Index extends React.PureComponent {
     )
   }
 }
-
 
 export default Index

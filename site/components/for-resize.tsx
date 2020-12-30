@@ -13,7 +13,6 @@ interface ResizeState {
   height: number
 }
 
-
 class Index extends React.Component<BaseProps, ResizeState> {
   constructor(props: BaseProps) {
     super(props)
@@ -48,6 +47,5 @@ class Index extends React.Component<BaseProps, ResizeState> {
     )
   }
 }
-
 
 export default Index
