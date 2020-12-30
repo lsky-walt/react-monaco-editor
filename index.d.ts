@@ -5,13 +5,16 @@ export interface EditorOptions {
   [propName: string]: any
 }
 export interface MonacoEditorProps {
-  width?: number | string,
-  height: number | string,
+  width?: number,
+  height: number,
   value: string,
   language: string,
   theme?: string,
   options?: EditorOptions,
   style?: object,
+  line?: number,
+  bordered?: boolean,
+  modelOptions?: Array<any>,
   monacoWillMount?: (monaco: any) => void,
   editorDidMount?: (editor: any, monaco: any) => void,
   onChange?: (value: string | null) => void,
@@ -21,44 +24,9 @@ declare class MonacoEditor extends React.Component<MonacoEditorProps> {
   render(): JSX.Element
 }
 
-export type Size = {
-  height: number;
-  width: number;
-};
-
-export type AutoSizerProps = {
-  children: (props: Size) => React.ReactNode;
-  className?: string;
-  defaultHeight?: number;
-  defaultWidth?: number;
-  disableHeight?: boolean;
-  disableWidth?: boolean;
-  nonce?: string;
-  onResize?: (info: Size) => any;
-  style?: React.CSSProperties;
-  [key: string]: any;
-};
-
-export class AutoSizer extends PureComponent<AutoSizerProps, Size> {
-  static defaultProps: {
-      onResize: () => void;
-      disableHeight: false;
-      disableWidth: false;
-      style: {};
-  }
-
-  constructor(props: AutoSizerProps)
-
-  componentDidMount(): void
-
-  componentWillUnmount(): void
-
-  render(): JSX.Element
-}
-
 export interface DiffProps {
-  width?: number | string,
-  height: number | string,
+  width?: number,
+  height: number,
   original: string,
   modified: string,
   originalLanguage?: string,

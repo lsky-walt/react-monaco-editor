@@ -6,7 +6,7 @@ interface MonacoContainerProps {
   width?: number,
   height?: number,
   ready: boolean,
-  needBorder?: boolean,
+  bordered?: boolean,
   loading?: React.ReactNode,
   bindRef: (node: HTMLDivElement | null) => void
 }
@@ -14,10 +14,10 @@ interface MonacoContainerProps {
 class Index extends React.PureComponent<MonacoContainerProps> {
   render() {
     const {
-      ready, height, width, bindRef, loading = null, needBorder = true,
+      ready, height, width, bindRef, loading = null, bordered = true,
     } = this.props
     return (
-      <div style={{ width, height, border: needBorder ? '1px solid #bdbdbd' : 'none' }} className={styles['monaco-editor-container']}>
+      <div style={{ width, height, border: bordered ? '1px solid #bdbdbd' : 'none' }} className={styles['monaco-editor-container']}>
         {!ready && loading}
         <div ref={bindRef} style={{ width, flex: 1, display: ready ? 'block' : 'none' }} />
       </div>
