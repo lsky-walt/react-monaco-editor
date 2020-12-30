@@ -180,7 +180,7 @@ class Index extends React.Component<DiffProps, EditorState> {
         width={width}
         height={height}
         ready={ready}
-        needBorder={false}
+        bordered={false}
         bindRef={this.bindRef}
       />
     )
