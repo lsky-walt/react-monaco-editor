@@ -24,6 +24,7 @@ export interface EditorProps {
   language: string,
   theme?: string,
   line?: number,
+  bordered?: boolean,
   options?: EditorOptions,
   loading?: React.ReactNode,
   modelOptions?: Array<any>,
@@ -173,10 +174,13 @@ class Index extends React.Component<EditorProps, EditorState> {
   }
 
   render() {
-    const { width, height, loading } = this.props
+    const {
+      width, height, loading, bordered = true,
+    } = this.props
     const { ready } = this.state
     return (
       <MonacoContainer
+        bordered={bordered}
         loading={loading}
         width={width}
         height={height}

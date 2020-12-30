@@ -120,6 +120,7 @@ yarn start
 | loading | React.ReactNode | null | loading ?? |
 | line | number | null | line number |
 | modelOptions | Array<any> | null | monaco.editor.createModel(value, language, ...modelOptions) |
+| bordered | boolean | true | need bordered ? |
 | style | object | null | editor outer container style |
 | onChange | func | (value) => void | triggered when the editor value changes |
 | monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
