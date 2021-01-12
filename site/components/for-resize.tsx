@@ -42,6 +42,7 @@ class Index extends React.Component<BaseProps, ResizeState> {
           height={height}
           language="go"
           value={examples.go}
+          // bordered={false}
         />
       </div>
     )

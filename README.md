@@ -22,6 +22,15 @@ $ yarn add @lsky/react-monaco-editor
 
 ```
 
+### Note
+
+```javascript
+// You need add alias config in webpack
+alias: {
+  vscode: require.resolve('monaco-languageclient/lib/vscode-compatibility'),
+}
+```
+
 ## Example
 
 ### Editor
@@ -85,6 +94,18 @@ class Index extends React.PureComponent {
 
 
 export default Index
+```
+
+
+### monaco Instance
+```javascript
+import { monaco } from '@lsky/react-monaco-editor'
+
+monaco.init()
+  .then(monacoInstance => {
+    // then
+  })
+
 ```
 
 ## Development

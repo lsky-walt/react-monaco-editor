@@ -1,4 +1,8 @@
 
+# 1.0.0-rc.3
+  `2021-01-12`
+  - theme names
+  - monaco instance
 # 1.0.0-rc.2
   `2020-12-30`
   - export bordered props

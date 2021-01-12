@@ -1,4 +1,5 @@
 import * as React from 'react'
+import init from 'src/monaco/init'
 
 export interface EditorOptions {
   readonly?: boolean | undefined,
@@ -40,4 +41,10 @@ export interface DiffProps {
 
 export class DiffEditor extends React.Component<MonacoEditorProps> {
   render(): JSX.Element
+}
+
+export declare const themeNames: Array<'active4d'|'clouds'|'chrome'|'monokai'|'solarized-dark'|'solarized-light'>;
+
+export declare namespace monaco  {
+  function init (): Promise<any>
 }
