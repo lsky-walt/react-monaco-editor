@@ -1,4 +1,3 @@
-
 interface Themes {
   [propName: string]: any
 }
@@ -2674,3 +2673,7 @@ export const themes: Themes = {
     },
   },
 }
+
+const keys: Array<'active4d'|'clouds'|'chrome'|'monokai'|'solarized-dark'|'solarized-light'> = ['active4d', 'clouds', 'chrome', 'monokai', 'solarized-dark', 'solarized-light']
+
+export default keys
