@@ -1,6 +1,6 @@
 {
   "name": "@lsky/react-monaco-editor",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0-rc.4",
   "main": "./lib/index.js",
   "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",

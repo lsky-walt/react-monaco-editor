@@ -1,4 +1,11 @@
+@monaco-editor-border-color: var(--monaco-editor-border-color, #bdbdbd);
+
 .monaco-editor-container {
   box-sizing: border-box;
   display: flex;
+  border: 1px solid @monaco-editor-border-color;
+
+  &.no-border  {
+    border: none;
+  }
 }
