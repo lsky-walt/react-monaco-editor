@@ -1,4 +1,8 @@
 
+# 1.0.0-rc.4
+  `2021-01-13`
+  - monaco editor container border color can be set in cssvar
+
 # 1.0.0-rc.3
   `2021-01-12`
   - theme names
