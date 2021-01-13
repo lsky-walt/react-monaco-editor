@@ -16,8 +16,12 @@ class Index extends React.PureComponent<MonacoContainerProps> {
     const {
       ready, height, width, bindRef, loading = null, bordered = true,
     } = this.props
+    let className = `monaco-editor-container ${styles['monaco-editor-container']}`
+    if (!bordered) {
+      className += ` ${styles['no-border']}`
+    }
     return (
-      <div style={{ width, height, border: bordered ? '1px solid #bdbdbd' : 'none' }} className={styles['monaco-editor-container']}>
+      <div style={{ width, height }} className={className}>
         {!ready && loading}
         <div ref={bindRef} style={{ width, flex: 1, display: ready ? 'block' : 'none' }} />
       </div>
