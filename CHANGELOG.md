@@ -1,4 +1,8 @@
 
+# 1.0.0-rc.5
+  `2021-03-03`
+  - fix monaco editor container overflow
+
 # 1.0.0-rc.4
   `2021-01-13`
   - monaco editor container border color can be set in cssvar
