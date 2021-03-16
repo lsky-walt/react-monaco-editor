@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as MonacoEditor from 'monaco-editor'
 import init from 'src/monaco/init'
 
 export interface EditorOptions {
@@ -36,7 +37,8 @@ export interface DiffProps {
   theme?: string,
   options?: object,
   monacoWillMount?: (monaco: any) => void,
-  editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
+  editorDidMount?: (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor.IStandaloneDiffEditor) => void,
+  onChange?: (value: string) => void,
 }
 
 export class DiffEditor extends React.Component<MonacoEditorProps> {

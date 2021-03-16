@@ -1,10 +1,12 @@
 import React from 'react'
+import * as MonacoEditor from 'monaco-editor'
 import { isFunc } from '../utils'
 
 import MonacoContainer from './monaco-container'
 import monacoEditorInit from './init'
 
 import { themes } from '../config/themes'
+import { debounce } from 'lodash'
 
 interface EditorOptions {
   width?: number | 0,
@@ -12,17 +14,18 @@ interface EditorOptions {
   [propName: string]: any
 }
 export interface DiffProps {
-  width?: number,
-  height?: number,
-  original: string,
-  modified: string,
-  originalLanguage?: string,
-  modifiedLanguage?: string,
-  language: string,
-  theme?: string,
-  options?: EditorOptions,
-  monacoWillMount?: (monaco: any) => void,
-  editorDidMount?: (original: (value: string) => void, modified: (value: string) => void, editor: any) => void,
+  width?: number;
+  height?: number;
+  original: string;
+  modified: string;
+  originalLanguage?: string;
+  modifiedLanguage?: string;
+  language: string;
+  theme?: string;
+  options?: EditorOptions;
+  monacoWillMount?: (monaco: any) => void;
+  editorDidMount?: (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor.IStandaloneDiffEditor) => void;
+  onChange?: (value: string) => void;
 }
 
 interface EditorState {
@@ -140,7 +143,7 @@ class Index extends React.Component<DiffProps, EditorState> {
 
   createEditor() {
     const {
-      editorDidMount = () => { }, theme, options, width, height,
+      editorDidMount = () => { }, theme, options, width, height, onChange,
     } = this.props
     if (!this.monaco || !this.container) return
 
@@ -155,10 +158,16 @@ class Index extends React.Component<DiffProps, EditorState> {
 
     if (isFunc(editorDidMount)) {
       editorDidMount(
-        original.getValue.bind(original),
-        modified.getValue.bind(modified),
+        original,
+        modified,
         this.editor,
       )
+    }
+
+    if(onChange && isFunc(onChange)) {
+      modified.onDidChangeContent(debounce(() => {
+        onChange(modified.getValue())
+      }, 32))
     }
 
     Object.keys(themes).forEach((v) => {

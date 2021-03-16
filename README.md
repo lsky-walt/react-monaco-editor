@@ -165,4 +165,5 @@ yarn start
 | options | object | null | [IDiffEditorOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.idiffeditorconstructionoptions.html) |
 | style | object | null | diff editor outer container style |
 | monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
-| editorDidMount | func | (original: (value) => void, modified: (value: string) => void, editor) => void | triggered when the diff editor did mounted |
+| editorDidMount | func | (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor) => void | triggered when the diff editor did mounted |
+| onChange | (value: string) => void | null | modified model content change |
