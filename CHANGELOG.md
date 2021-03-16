@@ -1,4 +1,7 @@
 
+# 1.0.0-rc.6
+  `2021-03-16`
+  - diff editor onChange
 # 1.0.0-rc.5
   `2021-03-03`
   - fix monaco editor container overflow

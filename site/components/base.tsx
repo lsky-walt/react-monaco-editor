@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 
 import { Select } from 'shineout'
@@ -5,6 +6,7 @@ import { examples } from '../example'
 
 // component
 import MonacoEditor from '../../src/index'
+import { string } from 'prop-types'
 
 export interface BaseProps { }
 interface BaseState {
@@ -110,7 +112,7 @@ class Index extends React.Component<BaseProps, BaseState> {
           <Select
             width={200}
             data={languages}
-            keygen={(d) => d}
+            keygen
             value={language}
             onChange={(l) => {
               this.setState({ language: l })

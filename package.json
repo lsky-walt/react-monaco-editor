@@ -1,6 +1,6 @@
 {
   "name": "@lsky/react-monaco-editor",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "main": "./lib/index.js",
   "repository": "https://github.com/lsky-walt/react-monaco-editor.git",
   "author": "lsky_walt <lsky_walt@163.com>",
@@ -45,8 +45,9 @@
     "html-webpack-plugin": "^4.3.0",
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
+    "monaco-editor": "^0.23.0",
     "postcss-loader": "^3.0.0",
-    "shineout": "^1.6.3-rc.6",
+    "shineout": "^1.6.3-rc.37",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",

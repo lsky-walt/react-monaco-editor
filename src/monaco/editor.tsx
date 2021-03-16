@@ -1,5 +1,5 @@
 import React from 'react'
-
+import * as MonacoEditor from 'monaco-editor'
 import debounce from 'lodash.debounce'
 import MonacoContainer from './monaco-container'
 
@@ -29,7 +29,7 @@ export interface EditorProps {
   loading?: React.ReactNode,
   modelOptions?: Array<any>,
   monacoWillMount?: (monaco: any) => void,
-  editorDidMount?: (editor: any, monaco: any) => void,
+  editorDidMount?: (editor: MonacoEditor.editor.IStandaloneCodeEditor, monaco: any) => void,
   onChange?: (value: string | null) => void,
 }
 
