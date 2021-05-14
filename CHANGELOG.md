@@ -1,4 +1,8 @@
 
+# 1.0.0-rc.7
+  `2021-05-14`
+  - Repair the same value but trigger onchange in Editor
+  - ⭐️ Now, we can custom cdn
 # 1.0.0-rc.6
   `2021-03-16`
   - diff editor onChange

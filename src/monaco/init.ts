@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { monacoLoader, monaco } from '../config'
+import { isObject } from '../utils'
 
 declare global {
   interface Window {
@@ -9,9 +10,15 @@ declare global {
 
 const noop = () => { }
 
-interface Config {
-  monaco: string,
-  monacoLoader: string
+export interface Config {
+  /**
+   * default: https://unpkg.com/monaco-editor@0.24.0/min/vs
+   */
+  monaco: string;
+  /**
+   * default: https://unpkg.com/monaco-editor@0.24.0/min/vs/loader.js
+   */
+  monacoLoader: string;
 }
 
 class Monaco {
@@ -82,7 +89,13 @@ class Monaco {
     return mainScript
   }
 
-  init(): Promise<any> {
+  init(config?: Config): Promise<any> {
+
+    if(config && isObject(config)) {
+      // if config is not null
+      this.__config = { ...this.__config, ...config }
+    }
+
     if (!this.isInitialized) {
       if (window.monaco && window.monaco.editor) {
         return new Promise((res) => res(window.monaco))

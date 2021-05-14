@@ -146,6 +146,7 @@ yarn start
 | onChange | func | (value) => void | triggered when the editor value changes |
 | monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (editor, monaco) => void | triggered when the editor did mounted |
+| cdnConfig | { monaco: string, monacoLoader: string } | { monaco: "https://unpkg.com/monaco-editor@0.24.0/min/vs", monacoLoader: "https://unpkg.com/monaco-editor@0.24.0/min/vs/loader.js" } | custom cdn |
 
 
 ## Diff Editor
@@ -167,3 +168,4 @@ yarn start
 | monacoWillMount | func | (monaco) => void | triggered when the monaco will mounted |
 | editorDidMount | func | (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor) => void | triggered when the diff editor did mounted |
 | onChange | (value: string) => void | null | modified model content change |
+| cdnConfig | { monaco: string, monacoLoader: string } | { monaco: "https://unpkg.com/monaco-editor@0.24.0/min/vs", monacoLoader: "https://unpkg.com/monaco-editor@0.24.0/min/vs/loader.js" } | custom cdn |

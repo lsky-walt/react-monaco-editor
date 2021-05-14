@@ -6,7 +6,6 @@ import { examples } from '../example'
 
 // component
 import MonacoEditor from '../../src/index'
-import { string } from 'prop-types'
 
 export interface BaseProps { }
 interface BaseState {

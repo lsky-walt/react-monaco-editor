@@ -1,9 +1,10 @@
 import React from 'react'
+// eslint-disable-next-line import/no-unresolved
 import * as MonacoEditor from 'monaco-editor'
 import debounce from 'lodash.debounce'
 import MonacoContainer from './monaco-container'
 
-import monacoEditor from './init'
+import monacoEditor, { Config } from './init'
 import { isFunc, isNumber } from '../utils'
 
 // themes
@@ -18,24 +19,32 @@ export interface EditorOptions extends ObjectOptions {
 }
 
 export interface EditorProps {
-  width?: number,
-  height: number,
-  value: string,
-  language: string,
-  theme?: string,
-  line?: number,
-  bordered?: boolean,
-  options?: EditorOptions,
-  loading?: React.ReactNode,
-  modelOptions?: Array<any>,
-  monacoWillMount?: (monaco: any) => void,
-  editorDidMount?: (editor: MonacoEditor.editor.IStandaloneCodeEditor, monaco: any) => void,
-  onChange?: (value: string | null) => void,
+  width?: number;
+  height: number;
+  value: string;
+  language: string;
+  theme?: string;
+  line?: number;
+  bordered?: boolean;
+  options?: MonacoEditor.editor.IEditorOptions;
+  loading?: React.ReactNode;
+  modelOptions?: Array<any>;
+  monacoWillMount?: (monaco: any) => void;
+  editorDidMount?: (editor: MonacoEditor.editor.IStandaloneCodeEditor | undefined, monaco: any) => void;
+  onChange?: (value: string | null) => void;
+  cdnConfig?: Config;
 }
 
 interface EditorState {
-  ready: boolean,
-  monacoDidMount: boolean
+  ready: boolean;
+  monacoDidMount: boolean;
+}
+
+const initRange: MonacoEditor.IRange = {
+  startLineNumber: 0,
+  endLineNumber: 0,
+  startColumn: 0,
+  endColumn: 0,
 }
 
 class Index extends React.Component<EditorProps, EditorState> {
@@ -43,7 +52,9 @@ class Index extends React.Component<EditorProps, EditorState> {
 
   public monaco: any
 
-  public editor: any
+  public editor?: MonacoEditor.editor.IStandaloneCodeEditor;
+
+  public editorValue: string;
 
   static displayName = 'MonacoEditor'
 
@@ -58,13 +69,20 @@ class Index extends React.Component<EditorProps, EditorState> {
     this.container = null
 
     this.bindRef = this.bindRef.bind(this)
+    this.onChange = this.onChange.bind(this)
+
+    // init value
+    this.editorValue = props.value || ''
+
+    this.editor = undefined
   }
 
   componentDidMount() {
     // editor will mount
-    const { monacoWillMount = () => { } } = this.props
+    const { monacoWillMount = () => { }, cdnConfig } = this.props
     const that = this
-    monacoEditor.init()
+    // if cdnConfig
+    monacoEditor.init(cdnConfig)
       .then((m) => {
         if (isFunc(monacoWillMount)) monacoWillMount(m)
         that.monaco = m
@@ -82,13 +100,13 @@ class Index extends React.Component<EditorProps, EditorState> {
       width, height, value, language, theme, options = {}, line,
     } = this.props
 
-    if (value !== prevProps.value) {
+    if (this.editor && value !== prevProps.value) {
       if (options.readOnly) {
         this.editor.setValue(value)
       } else {
         this.editor.executeEdits('', [
           {
-            range: this.editor.getModel().getFullModelRange(),
+            range: this.editor.getModel()?.getFullModelRange() || initRange,
             text: value,
           },
         ])
@@ -96,16 +114,16 @@ class Index extends React.Component<EditorProps, EditorState> {
       this.editor.pushUndoStop()
     }
 
-    if (line !== prevProps.line) {
+    if (this.editor && line !== prevProps.line) {
       this.editor.setScrollPosition({ scrollTop: line })
     }
 
-    if (language !== prevProps.language) {
+    if (this.editor && language !== prevProps.language) {
       this.editor.setValue(value)
       this.monaco.editor.setModelLanguage(this.editor.getModel(), language)
     }
 
-    if ((prevProps.width !== width || prevProps.height !== height) && isNumber(width) && isNumber(height)) {
+    if (this.editor && (prevProps.width !== width || prevProps.height !== height) && isNumber(width) && isNumber(height)) {
       this.editor.layout({ width: this.calc(width), height: this.calc(height) })
     }
 
@@ -114,7 +132,7 @@ class Index extends React.Component<EditorProps, EditorState> {
       this.monaco.editor.setTheme(theme)
     }
 
-    if (options !== prevProps.options) {
+    if (this.editor && options !== prevProps.options) {
       this.editor.updateOptions(options)
     }
   }
@@ -123,6 +141,16 @@ class Index extends React.Component<EditorProps, EditorState> {
     if (this.editor) {
       this.editor.dispose()
     }
+  }
+
+  onChange() {
+    const { onChange = () => { } } = this.props
+    if (!this.editor) return
+    const value = this.editor.getValue()
+    // if equal, return
+    if (this.editorValue === value) return
+    this.editorValue = value
+    onChange(value)
   }
 
   calc = (n: number | undefined) => {
@@ -157,9 +185,9 @@ class Index extends React.Component<EditorProps, EditorState> {
 
     if (isFunc(editorDidMount)) editorDidMount(this.editor, this.monaco)
 
-    if (isFunc(onChange)) {
+    if (that.editor && isFunc(onChange)) {
       that.editor.onDidChangeModelContent(debounce(() => {
-        onChange(that.editor.getValue())
+        this.onChange()
       }, 32))
     }
 
