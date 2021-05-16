@@ -1,12 +1,13 @@
 import React from 'react'
+// eslint-disable-next-line import/no-unresolved
 import * as MonacoEditor from 'monaco-editor'
+import { debounce } from 'lodash'
 import { isFunc } from '../utils'
 
 import MonacoContainer from './monaco-container'
-import monacoEditorInit from './init'
+import monacoEditorInit, { Config } from './init'
 
 import { themes } from '../config/themes'
-import { debounce } from 'lodash'
 
 interface EditorOptions {
   width?: number | 0,
@@ -26,6 +27,10 @@ export interface DiffProps {
   monacoWillMount?: (monaco: any) => void;
   editorDidMount?: (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor.IStandaloneDiffEditor) => void;
   onChange?: (value: string) => void;
+  /**
+   * custom cdn
+   */
+  cdnConfig?: Config;
 }
 
 interface EditorState {
@@ -61,8 +66,8 @@ class Index extends React.Component<DiffProps, EditorState> {
 
   componentDidMount() {
     const that = this
-    const { monacoWillMount = () => { } } = this.props
-    monacoEditorInit.init()
+    const { monacoWillMount = () => { }, cdnConfig } = this.props
+    monacoEditorInit.init(cdnConfig)
       .then((m) => {
         if (isFunc(monacoWillMount)) monacoWillMount(m)
         that.monaco = m
@@ -164,7 +169,7 @@ class Index extends React.Component<DiffProps, EditorState> {
       )
     }
 
-    if(onChange && isFunc(onChange)) {
+    if (onChange && isFunc(onChange)) {
       modified.onDidChangeContent(debounce(() => {
         onChange(modified.getValue())
       }, 32))
