@@ -22,14 +22,6 @@ $ yarn add @lsky/react-monaco-editor
 
 ```
 
-### Note
-
-```javascript
-// You need add alias config in webpack
-alias: {
-  vscode: require.resolve('monaco-languageclient/lib/vscode-compatibility'),
-}
-```
 
 ## Example
 
