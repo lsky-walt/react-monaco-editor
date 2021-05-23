@@ -17,13 +17,14 @@ interface EditorOptions {
 export interface DiffProps {
   width?: number;
   height?: number;
+  style?: React.CSSProperties;
   original: string;
   modified: string;
   originalLanguage?: string;
   modifiedLanguage?: string;
   language: string;
   theme?: string;
-  options?: EditorOptions;
+  options?: MonacoEditor.editor.IDiffEditorOptions;
   monacoWillMount?: (monaco: any) => void;
   editorDidMount?: (original: MonacoEditor.editor.ITextModel, modified: MonacoEditor.editor.ITextModel, editor: MonacoEditor.editor.IStandaloneDiffEditor) => void;
   onChange?: (value: string) => void;
@@ -188,11 +189,12 @@ class Index extends React.Component<DiffProps, EditorState> {
 
   render() {
     const { ready } = this.state
-    const { width, height } = this.props
+    const { width, height, style } = this.props
     return (
       <MonacoContainer
         width={width}
         height={height}
+        style={style}
         ready={ready}
         bordered={false}
         bindRef={this.bindRef}
