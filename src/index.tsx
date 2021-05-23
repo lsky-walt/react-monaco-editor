@@ -9,11 +9,9 @@ import monaco from './monaco/init'
 import themeNames from './config/themes'
 
 export interface MonacoEditorProps extends EditorProps {
-  style?: object
 }
 
 export interface DiffEditorProps extends DiffProps {
-  style?: object
 }
 
 export {
