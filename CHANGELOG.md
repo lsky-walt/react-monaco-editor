@@ -1,4 +1,8 @@
 
+# 1.0.0-rc.8
+ `2022-04-11`
+- update monaco-editor version
+
 # 1.0.0-rc.7
   `2021-05-14`
   - Repair the same value but trigger onchange in Editor
